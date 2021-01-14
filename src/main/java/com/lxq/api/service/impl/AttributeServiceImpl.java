@@ -1,0 +1,44 @@
+package com.lxq.api.service.impl;
+
+import com.lxq.api.dao.AttributeDao;
+import com.lxq.api.entity.po.Attributes;
+import com.lxq.api.entity.vo.AttributeVo;
+import com.lxq.api.service.AttributeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+@Service  //声明业务逻辑处理层
+public class AttributeServiceImpl  implements AttributeService {
+
+
+    @Autowired
+    private AttributeDao attributeDao;
+
+
+    @Override
+    public Map queryAttribute(AttributeVo attributeVo) {
+
+        Map map = new HashMap();
+
+        //查询总条数
+        Long attributeCount=attributeDao.queryAttribute(attributeVo);
+
+        map.put("count",attributeCount);
+
+        //计算起始下标
+        Integer startIndex=(attributeVo.getPage()-1)*attributeVo.getSize();
+
+        attributeVo.setStartIndex(startIndex);
+
+        //查询分页后的数据
+        List<Attributes> attributesList=attributeDao.queryAttributeLimit(attributeVo);
+
+        map.put("data",attributesList);
+        return map;
+    }
+}
