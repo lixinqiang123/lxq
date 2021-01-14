@@ -1,13 +1,13 @@
 package com.lxq.api.controller;
 
+import com.lxq.api.entity.po.Attributes;
 import com.lxq.api.entity.vo.AttributeVo;
 import com.lxq.api.entity.vo.ResultData;
 import com.lxq.api.service.AttributeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController  //代表类上加@controller  该类下的每个方法里都默认加了 @responsebody
@@ -27,6 +27,18 @@ public class AttributeController {
         Map attributesList=attributeService.queryAttribute(attributeVo);
 
         return ResultData.success(attributesList);
+    }
+
+
+    //新增接口
+    @PostMapping("add")
+    public ResultData add(Attributes attributes){
+
+        Map map = new HashMap();
+
+        attributeService.addAttribute(attributes);
+        map.put("dataId",attributes.getId());
+        return ResultData.success(map);
     }
 
 }

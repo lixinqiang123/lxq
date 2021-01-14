@@ -7,6 +7,7 @@ import com.lxq.api.service.AttributeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,5 +41,16 @@ public class AttributeServiceImpl  implements AttributeService {
 
         map.put("data",attributesList);
         return map;
+    }
+
+    //新增
+    @Override
+    public void addAttribute(Attributes attributes) {
+
+        attributes.setCreateDate(new Date());
+        attributes.setUpdateDate(new Date());
+        attributes.setAuthor("admin");
+        attributes.setIsDel(0);
+        attributeDao.addAttribute(attributes);
     }
 }
