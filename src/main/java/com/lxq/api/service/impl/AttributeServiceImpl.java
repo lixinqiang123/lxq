@@ -53,4 +53,12 @@ public class AttributeServiceImpl  implements AttributeService {
         attributes.setIsDel(0);
         attributeDao.addAttribute(attributes);
     }
+
+    @Override
+    public void updateAttribute(Attributes attributes) {
+
+        attributes.setCreateDate(new Date());
+        attributes.setUpdateDate(new Date());
+        attributeDao.updateAttribute(attributes);
+    }
 }

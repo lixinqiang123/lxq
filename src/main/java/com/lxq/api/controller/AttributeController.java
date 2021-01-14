@@ -41,4 +41,13 @@ public class AttributeController {
         return ResultData.success(map);
     }
 
+
+    //修改接口
+    @PostMapping("update")
+    public ResultData update(Attributes attributes){
+
+        attributeService.updateAttribute(attributes);
+        return ResultData.success(null);
+    }
+
 }

@@ -7,4 +7,6 @@ public interface AttributeService {
     Map queryAttribute(AttributeVo attributeVo);
 
     void addAttribute(Attributes attributes);
+
+    void updateAttribute(Attributes attributes);
 }

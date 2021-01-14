@@ -6,6 +6,7 @@ import com.lxq.api.entity.vo.AttributeVo;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -21,4 +22,12 @@ public interface AttributeDao {
             "value(#{name},#{nameCH},#{typeId},#{type},#{isSKU},#{isDel},#{createDate},#{updateDate},#{author})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void addAttribute(Attributes attributes);
+
+
+    @Update("update shop_attribute set name=#{name},nameCH=#{nameCH},typeId=#{typeId}," +
+            "type=#{type},isSKU=#{isSKU}," +
+            "createDate=#{createDate},updateDate=#{updateDate}," +
+            "author=#{author}" +
+            " where  id=#{id}")
+    void updateAttribute(Attributes attributes);
 }
