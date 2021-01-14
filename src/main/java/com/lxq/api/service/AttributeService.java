@@ -9,4 +9,6 @@ public interface AttributeService {
     void addAttribute(Attributes attributes);
 
     void updateAttribute(Attributes attributes);
+
+    void deleteAttribute(Integer id);
 }

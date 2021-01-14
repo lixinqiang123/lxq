@@ -16,6 +16,8 @@
 
         </if>
 
+            and isDel=0
+
     </select>
 
     <!--查询分页后的数据-->
@@ -28,6 +30,8 @@
             and name=#{name}
 
         </if>
+
+            and isDel=0
 
         limit #{startIndex},#{size}
     </select>

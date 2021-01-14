@@ -50,4 +50,13 @@ public class AttributeController {
         return ResultData.success(null);
     }
 
+
+    //逻辑删除
+    @PostMapping("deleteAttribute")
+    public ResultData deleteAttribute(Integer id){
+
+        attributeService.deleteAttribute(id);
+        return ResultData.success(null);
+    }
+
 }

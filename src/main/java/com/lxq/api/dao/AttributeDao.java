@@ -30,4 +30,8 @@ public interface AttributeDao {
             "author=#{author}" +
             " where  id=#{id}")
     void updateAttribute(Attributes attributes);
+
+
+    @Update("update shop_attribute set isDel=1 where id=#{id}")
+    void deleteAttribute(Integer id);
 }

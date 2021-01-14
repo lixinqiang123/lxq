@@ -61,4 +61,11 @@ public class AttributeServiceImpl  implements AttributeService {
         attributes.setUpdateDate(new Date());
         attributeDao.updateAttribute(attributes);
     }
+
+    //逻辑删除
+    @Override
+    public void deleteAttribute(Integer id) {
+
+        attributeDao.deleteAttribute(id);
+    }
 }
