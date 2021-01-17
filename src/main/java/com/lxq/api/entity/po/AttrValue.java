@@ -10,7 +10,7 @@ public class AttrValue {
 
     private String nameCH;
 
-    private Integer attId;  //属性id
+    private Integer attrId;  //属性id
 
 
     public Integer getId() {
@@ -37,11 +37,11 @@ public class AttrValue {
         this.nameCH = nameCH;
     }
 
-    public Integer getAttId() {
-        return attId;
+    public Integer getAttrId() {
+        return attrId;
     }
 
-    public void setAttId(Integer attId) {
-        this.attId = attId;
+    public void setAttrId(Integer attrId) {
+        this.attrId = attrId;
     }
 }

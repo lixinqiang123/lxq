@@ -1,13 +1,11 @@
 package com.lxq.api.controller;
 
 
+import com.lxq.api.entity.po.AttrValue;
 import com.lxq.api.entity.vo.ResultData;
 import com.lxq.api.service.AttributeValueService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -30,5 +28,14 @@ public class AttributeValueController {
         return ResultData.success(attrValue);
     }
 
+
+    //新增
+    @PostMapping("add")
+    public ResultData add(AttrValue attrValue){
+
+        attributeValueService.addAttrValue(attrValue);
+
+        return ResultData.success(null);
+    }
 
 }

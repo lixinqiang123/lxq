@@ -26,4 +26,10 @@ public class AttributeValueServiceImpl  implements AttributeValueService {
         map.put("data",attrValues);
         return map;
     }
+
+
+    @Override
+    public void addAttrValue(AttrValue attrValue) {
+        attributeValueDao.addAttrValue(attrValue);
+    }
 }
