@@ -32,4 +32,10 @@ public class AttributeValueServiceImpl  implements AttributeValueService {
     public void addAttrValue(AttrValue attrValue) {
         attributeValueDao.addAttrValue(attrValue);
     }
+
+    //修改
+    @Override
+    public void updateValue(AttrValue attrValue) {
+        attributeValueDao.updateValue(attrValue);
+    }
 }

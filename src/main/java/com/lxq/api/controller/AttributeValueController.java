@@ -38,4 +38,13 @@ public class AttributeValueController {
         return ResultData.success(null);
     }
 
+    //修改属性值
+    @PostMapping("update")
+    public ResultData update(AttrValue attrValue){
+
+        attributeValueService.updateValue(attrValue);
+
+        return ResultData.success(null);
+    }
+
 }

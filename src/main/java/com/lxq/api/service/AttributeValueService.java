@@ -8,4 +8,6 @@ public interface AttributeValueService {
     Map queryAttrValue(Integer id);
 
     void addAttrValue(AttrValue attrValue);
+
+    void updateValue(AttrValue attrValue);
 }

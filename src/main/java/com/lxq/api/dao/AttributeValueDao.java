@@ -4,6 +4,7 @@ import com.lxq.api.entity.po.AttrValue;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -15,4 +16,8 @@ public interface AttributeValueDao {
 
     @Insert("insert into shop_attr_value (name,nameCH,attrId) value(#{name},#{nameCH},#{attrId})")
     void addAttrValue(AttrValue attrValue);
+
+
+    @Update("update shop_attr_value set name=#{name},nameCH=#{nameCH} where id=#{id}")
+    void updateValue(AttrValue attrValue);
 }
