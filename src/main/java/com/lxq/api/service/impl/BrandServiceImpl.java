@@ -46,6 +46,7 @@ public class BrandServiceImpl implements BrandService {
 
         brand.setCreateDate(new Date());
         brand.setUpdateDate(new Date());
+        brand.setIsdel(0);
         brandDao.addBrand(brand);
     }
 

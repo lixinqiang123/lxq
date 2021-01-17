@@ -1,6 +1,9 @@
 package com.lxq.api.controller;
 
 
+import com.aliyun.oss.OSS;
+import com.aliyun.oss.OSSClientBuilder;
+import com.aliyun.oss.model.PutObjectResult;
 import com.lxq.api.entity.po.Brand;
 import com.lxq.api.entity.vo.BrandVo;
 import com.lxq.api.entity.vo.ResultData;
@@ -10,10 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -113,6 +114,40 @@ public class BrandController {
         }
 
         return ResultData.success("http://192.168.1.49:8082/images/"+newName);
+    }
+
+
+    //图片上传 上传到阿里上面
+    @RequestMapping("uploadoss")
+    public ResultData uploadoss(MultipartFile  img) throws IOException {
+
+        Map map = new HashMap();
+
+        // Endpoint以杭州为例，其它Region请按实际情况填写。
+        String endpoint = "oss-cn-beijing.aliyuncs.com";
+        // 阿里云主账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM账号进行API访问或日常运维，请登录RAM控制台创建RAM账号。
+        String accessKeyId = "LTAI4G4uJKPBqNTmhFL2QPCG";
+        String accessKeySecret = "ph6vPKpYRVXz8O5DKv4XmLH4pNYnSs";
+        String bucketName = "2006lxq";
+
+        //获取文件的真实名称
+        String originalFilename = img.getOriginalFilename();
+
+        // <yourObjectName>上传文件到OSS时需要指定包含文件后缀在内的完整路径，例如abc/efg/123.jpg。
+        String objectName = "images/"+originalFilename;
+
+        // 创建OSSClient实例。
+        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
+
+
+        PutObjectResult putObjectResult = ossClient.putObject(bucketName, objectName, img.getInputStream());
+
+        System.out.println(putObjectResult);
+
+        map.put("data","https://"+bucketName+"."+endpoint+"/"+objectName);
+        // 关闭OSSClient。
+        ossClient.shutdown();
+        return ResultData.success(map);
     }
 
 

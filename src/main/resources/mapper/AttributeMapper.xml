@@ -21,17 +21,22 @@
     </select>
 
     <!--查询分页后的数据-->
-    <select id="queryAttributeLimit" resultType="com.lxq.api.entity.po.Attributes">
+    <select id="queryAttributeLimit" resultType="com.lxq.api.entity.vo.AttributeValue">
 
-        select * from shop_attribute where 1=1
+        select
+        t.`name`as typeName,
+        att.`name`,att.nameCH,att.type,att.isSKU,att.id
+        from shop_attribute att LEFT JOIN shop_type t on att.typeId=t.id
+
+        where 1=1
 
         <if test=" name !=null and name !='' ">
 
-            and name=#{name}
+            and att.name=#{name}
 
         </if>
 
-            and isDel=0
+            and att.isDel=0
 
         limit #{startIndex},#{size}
     </select>
