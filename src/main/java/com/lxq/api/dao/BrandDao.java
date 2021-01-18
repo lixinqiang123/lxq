@@ -4,9 +4,9 @@ package com.lxq.api.dao;
 import com.lxq.api.entity.po.Brand;
 import com.lxq.api.entity.vo.BrandVo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
-import java.util.Map;
 
 @Mapper
 public interface BrandDao {
@@ -23,4 +23,7 @@ public interface BrandDao {
     void updateBrand(Brand brand);
 
     void deleteBrand(Integer  id);
+
+    @Select("select id,name from shop_brand")
+    List<Brand> queryBrandByIdByName();
 }

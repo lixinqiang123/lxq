@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -35,6 +36,14 @@ public class BrandController {
     @Autowired
     private BrandService brandService;
 
+
+    //查询品牌数据
+    @GetMapping("queryBrand")
+    public ResultData queryBrand(){
+
+        List<Brand> brandList=brandService.queryBrandByIdByName();
+        return ResultData.success(brandList);
+    }
 
     //查询
     @GetMapping("getData")
@@ -177,7 +186,7 @@ public class BrandController {
 
 
         brandService.deleteBrand(id);
-        return ResultData.success(null);
+        return ResultData.success("lxqwbd");
     }
 
 }
