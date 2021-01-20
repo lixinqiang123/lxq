@@ -4,10 +4,7 @@ package com.lxq.api.dao;
 import com.lxq.api.entity.po.Attributes;
 import com.lxq.api.entity.vo.AttributeValue;
 import com.lxq.api.entity.vo.AttributeVo;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -35,4 +32,7 @@ public interface AttributeDao {
 
     @Update("update shop_attribute set isDel=1 where id=#{id}")
     void deleteAttribute(Integer id);
+
+    @Select("select * from shop_attribute where id=#{id}")
+    Attributes queryAttrById(Integer id);
 }

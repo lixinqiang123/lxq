@@ -1,6 +1,7 @@
 package com.lxq.api.service.impl;
 
 import com.lxq.api.dao.TypeDao;
+import com.lxq.api.entity.po.Attributes;
 import com.lxq.api.entity.po.Type;
 import com.lxq.api.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,5 +50,27 @@ public class TypeServiceImpl implements TypeService {
         map.put("isDel",isDel);
         map.put("id",id);
         typeDao.update(map);
+    }
+
+    @Override
+    public List<Type> queryTypeBypid(Integer pid) {
+
+        List<Type> typeList=typeDao.queryTypeBypid(pid);
+        return typeList;
+    }
+
+    @Override
+    public List<Type> queryTypeByid(Integer id) {
+
+        List<Type> typeList=typeDao.queryTypeByid(id);
+
+        return null;
+    }
+
+
+    //根据分类id查询对应的属性数据
+    @Override
+    public List<Attributes> queryAttrByTypeId(Integer typeId) {
+        return typeDao.queryAttrByTypeId(typeId);
     }
 }

@@ -20,6 +20,15 @@ public class AttributeController {
     private AttributeService attributeService;
 
 
+    //根据id查询
+    @GetMapping("queryAttrById")
+    public ResultData queryAttrById(Integer id){
+
+        Attributes attributes=attributeService.queryAttrById(id);
+
+        return ResultData.success(attributes);
+    }
+
     //查询
     @GetMapping("getData")
     public ResultData getData(AttributeVo attributeVo){

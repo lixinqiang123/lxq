@@ -60,6 +60,7 @@ public class AttributeServiceImpl  implements AttributeService {
 
         attributes.setCreateDate(new Date());
         attributes.setUpdateDate(new Date());
+        attributes.setIsDel(0);
         attributeDao.updateAttribute(attributes);
     }
 
@@ -68,5 +69,11 @@ public class AttributeServiceImpl  implements AttributeService {
     public void deleteAttribute(Integer id) {
 
         attributeDao.deleteAttribute(id);
+    }
+
+    //根据id查询
+    @Override
+    public Attributes queryAttrById(Integer id) {
+        return attributeDao.queryAttrById(id);
     }
 }

@@ -1,7 +1,9 @@
 package com.lxq.api.controller;
 
 
+import com.lxq.api.entity.po.Attributes;
 import com.lxq.api.entity.po.Type;
+import com.lxq.api.entity.vo.ResultData;
 import com.lxq.api.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,46 @@ public class TypeController {
 
     @Autowired
     private TypeService typeService;
+
+
+    /**
+     * 根据分类 id查询对应属性表里的 数据
+     *
+     *
+     */
+
+    @GetMapping("queryAttrByTypeId")
+    public ResultData queryAttrByTypeId(Integer typeId){
+
+        List<Attributes> attributesList=typeService.queryAttrByTypeId(typeId);
+
+        return ResultData.success(attributesList);
+    }
+
+
+    /**
+     * 根据id查询 对应的pid信息
+     *
+     */
+
+    @GetMapping("queryTypeByid")
+    public ResultData queryTypeByid(Integer id){
+
+        List<Type> typeList=typeService.queryTypeByid(id);
+        return ResultData.success(typeList);
+    }
+
+    /**
+     * 根据pid查询数据
+     */
+
+    @GetMapping("queryTypeBypid")
+    public ResultData queryTypeBypid(Integer pid){
+
+        List<Type> typeList=typeService.queryTypeBypid(pid);
+        return ResultData.success(typeList);
+    }
+
 
     /**
      * 路径:http://192.168.79.1:8080/api/type/getData
