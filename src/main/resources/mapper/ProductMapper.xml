@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lxq.api.dao.ProductDao">
+
+    <!--查询总条数-->
+    <select id="queryProductCount" resultType="java.lang.Long">
+
+        select count(*) from shop_product where 1=1
+
+        <if test="serchname!=null and serchname!='' ">
+            and name=#{serchname}
+        </if>
+
+        <if test="branid!=null">
+            and brandId=#{branid}
+        </if>
+    </select>
+
+    <!--查询分页后的数据-->
+    <select id="queryProductLimit" resultType="com.lxq.api.entity.vo.ProductVo">
+
+        select p.`name`,p.imgPath,p.price,p.sortNum,p.id,p.stocks,
+                s.`name`as brandname,s.id as bid,p.typeId as typeId from shop_product p
+          left join shop_brand s on p.brandId=s.id where 1=1
+
+        <if test="serchname!=null and serchname!='' ">
+            and p.name=#{serchname}
+        </if>
+
+        <if test="branid!=null">
+            and p.brandId=#{branid}
+        </if>
+
+        limit #{startIndex},#{size}
+    </select>
+</mapper>

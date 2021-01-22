@@ -18,7 +18,7 @@ public class Product {
 
     private String  productdecs;
 
-    private Double price;
+    private Integer  price;
 
     private String  imgPath;
 
@@ -36,6 +36,8 @@ public class Product {
 
     private Integer isDel;
 
+    //品牌名字
+    private String brandname;
 
     public Integer getId() {
         return id;
@@ -85,11 +87,11 @@ public class Product {
         this.productdecs = productdecs;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
