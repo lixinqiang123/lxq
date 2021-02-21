@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController  //代表类上加@controller  该类下的每个方法里都默认加了 @responsebody
@@ -66,6 +67,16 @@ public class AttributeController {
 
         attributeService.deleteAttribute(id);
         return ResultData.success(null);
+    }
+
+
+    //根据分类id查询对应的 sku数据 和非sku数据
+    @GetMapping("queryAttrDataById")
+    public ResultData queryAttrDataById(Integer typeId){
+
+        Map attrData=attributeService.queryAttr(typeId);
+
+        return ResultData.success(attrData);
     }
 
 }

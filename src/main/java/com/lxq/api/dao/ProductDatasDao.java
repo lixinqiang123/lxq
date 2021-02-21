@@ -4,6 +4,7 @@ package com.lxq.api.dao;
 import com.lxq.api.entity.po.ProductAttrdatas;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -17,4 +18,8 @@ public interface ProductDatasDao {
             " </foreach>" +
             "</script>")
     void addList(List<ProductAttrdatas> attrdatasList);
+
+
+    @Select("select * from shop_productdatas where proId=#{pid}")
+    List<ProductAttrdatas> queryProductDataById(Integer pid);
 }

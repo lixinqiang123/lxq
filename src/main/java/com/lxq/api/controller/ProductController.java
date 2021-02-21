@@ -117,4 +117,14 @@ public class ProductController {
 
         return ResultData.success(null);
     }
+
+
+    //根据商品id查询数据
+    @GetMapping("queryProductDataById")
+    public ResultData queryProductDataById(Integer pid){
+
+        List<ProductAttrdatas> productAttrdatasList=productDatasDao.queryProductDataById(pid);
+
+        return ResultData.success(productAttrdatasList);
+    }
 }

@@ -35,4 +35,8 @@ public interface AttributeDao {
 
     @Select("select * from shop_attribute where id=#{id}")
     Attributes queryAttrById(Integer id);
+
+
+    @Select("select * from shop_attribute where typeId=#{typeId}")
+    List<Attributes> queryAttrByTypeId(Integer typeId);
 }
